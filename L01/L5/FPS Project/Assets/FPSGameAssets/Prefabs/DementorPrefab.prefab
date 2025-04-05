@@ -395,7 +395,7 @@ MonoBehaviour:
   minDistance: 1
   particleEffect: {fileID: 2946061277651592578, guid: a2d28538c58689c4390e299d9d6b2ed4, type: 3}
   damageValue: 10
-  lootPrefab: {fileID: 1396780956966815885, guid: 9695eaedb278f9d428e902d1b076c5a7, type: 3}
+  lootPrefab: {fileID: 3058200423702519432, guid: f2d30d73025828846886bfd5359de58f, type: 3}
 --- !u!1 &5434458274968422684
 GameObject:
   m_ObjectHideFlags: 0

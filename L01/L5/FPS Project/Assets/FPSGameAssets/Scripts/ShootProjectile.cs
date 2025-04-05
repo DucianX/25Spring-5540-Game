@@ -1,4 +1,6 @@
 
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 public class ShootProjectile : MonoBehaviour
@@ -18,8 +20,11 @@ public class ShootProjectile : MonoBehaviour
     public float animationSpeed = 10f;
     Color currentReticleColor;
     UnityEngine.Vector3 originalReticleScale;
-
+    public int ammo;
+    public TextMeshProUGUI ammoText;
     GameObject currentProjectile;
+    public AudioClip rejectSFX;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -39,14 +44,15 @@ public class ShootProjectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButtonDown("Fire1")) 
             Shoot();
+        ammoText.text = ammo.ToString();
     }
 
     void Shoot() {
-        if (currentProjectile) {
+        if (currentProjectile && ammo > 0) {
              GameObject spell = Instantiate(currentProjectile, transform.position + transform.forward, transform.rotation);
-
+            ammo -= 1;
              Rigidbody rb = spell.GetComponent<Rigidbody>();
 
              if(rb) 
@@ -57,6 +63,9 @@ public class ShootProjectile : MonoBehaviour
                 AudioSource.PlayClipAtPoint(spellSFX, transform.position);
             
             spell.transform.SetParent(transform);
+        }
+        if(ammo == 0) {
+            AudioSource.PlayClipAtPoint(rejectSFX, transform.position);
         }
        
     }
@@ -69,7 +78,7 @@ public class ShootProjectile : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.forward, 
             out hit, spellRange)) 
             {
-                Debug.Log("Hit something " + hit.collider.name);
+                // Debug.Log("Hit something " + hit.collider.name);
                 if(hit.collider.CompareTag("Dementor")) {
                     currentProjectile = patronusProjectile;
                     UpdateReticleColor();
@@ -96,5 +105,9 @@ public class ShootProjectile : MonoBehaviour
 
     void UpdateReticleColor() {
         currentReticleColor = currentProjectile.GetComponent<Renderer>().sharedMaterial.color;
+    }
+
+    public void addAmmo(int amount) {
+        ammo += amount;
     }
 }

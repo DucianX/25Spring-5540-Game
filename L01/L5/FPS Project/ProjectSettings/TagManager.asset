@@ -9,6 +9,8 @@ TagManager:
   - Protego
   - Projectile
   - Camera
+  - Bludger
+  - Chest
   layers:
   - Default
   - TransparentFX

@@ -1,2 +1,17 @@
 fileFormatVersion: 2
 guid: 514d9528d1e17f8458944c956bd74310
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - patronusProjectile: {fileID: 307854088696059120, guid: 8e5da6081b020c547b14d33c5fc566b6, type: 3}
+  - reductoProjectile: {fileID: 307854088696059120, guid: f5e6c568913177447a2a407d34483a74, type: 3}
+  - defaultProjectile: {fileID: 307854088696059120, guid: 83b2de277ee33a74cacce15e3c14f8df, type: 3}
+  - alohomoraProjectile: {fileID: 307854088696059120, guid: e787d0ad26c225242832730651fc886e, type: 3}
+  - spellSFX: {instanceID: 0}
+  - reticleImage: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
