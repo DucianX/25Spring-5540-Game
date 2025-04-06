@@ -3567,51 +3567,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 19501619781234871, guid: c9c12b5b6b1d34b298c8c6616d992a11, type: 3}
   m_PrefabInstance: {fileID: 1447850654}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1475495347
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1475495349}
-  - component: {fileID: 1475495348}
-  m_Layer: 0
-  m_Name: TowerBuilder (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1475495348
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1475495347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b8c53d4072b21648b8df3cd1c7e80a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  towers: []
---- !u!4 &1475495349
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1475495347}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -39.027225, y: -84.70628, z: -4.6524754}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1477714853
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4245,7 +4200,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b8c53d4072b21648b8df3cd1c7e80a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towers: []
+  towers:
+  - {fileID: 1401014823036408, guid: 639c49a7820a549c5822f7b768abc5ac, type: 3}
+  - {fileID: 1361402013487122, guid: afd8cfe3809484aac81a3f4f39b80ca5, type: 3}
+  - {fileID: 1161251386251526, guid: 6f6de38bc4946428ab2a1d468039753e, type: 3}
 --- !u!4 &1691569506
 Transform:
   m_ObjectHideFlags: 0
@@ -5195,4 +5153,3 @@ SceneRoots:
   - {fileID: 2057259921}
   - {fileID: 1074781224}
   - {fileID: 1691569506}
-  - {fileID: 1475495349}

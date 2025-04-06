@@ -7,6 +7,7 @@ public class TowerBuilder : MonoBehaviour
     int selectedTowerIndex;
     public static TowerBuilder Instance {get; private set;}
     public static int enemyCount;
+    bool selectedTower = false;
     void Awake()
     {
         // Make sure there is only one instance
@@ -31,11 +32,23 @@ public class TowerBuilder : MonoBehaviour
         
     }
 
-    public void SelectTower() {
-
+    public void SelectTower(int index) {
+        if(index < towers.Length && index >= 0) {
+            selectedTowerIndex = index;
+            selectedTower = true;
+        }
+        else
+        {
+            selectedTower = false;
+            Debug.LogWarning("Invalid tower index...");
+        }
     }
 
     public GameObject GetSelectedTower() {
-        return null;
+        return towers[selectedTowerIndex];
+    }
+
+    public bool HasSelectedTower() {
+        return selectedTower;
     }
 }
