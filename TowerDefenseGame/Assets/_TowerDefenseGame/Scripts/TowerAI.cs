@@ -6,12 +6,12 @@ using Vector3 = UnityEngine.Vector3;
 
 public class TowerAI : MonoBehaviour
 {
-    public enum TowerState {Patrol, Attack, Die}
+    public enum TowerState { Patrol, Attack, Die }
     public TowerState currentState = TowerState.Patrol;
     [Header("Patrol Settings")]
     public Transform turret;
     public float rotationSpeed = 30f;
-    public float maxRotationAngle = 90f;
+    public float maxRotationAngle = 50f;
     public float detectionRange = 10f;
     Transform target;
     [Header("Attack Settings")]
@@ -19,7 +19,7 @@ public class TowerAI : MonoBehaviour
     public Transform firePoint;
     public float fireRate = 2;
     float fireCooldown = 0f;
-    float gunnerRotation = 126f;
+    float gunnerRotation = 0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     [Header("Die Settings")]
@@ -31,7 +31,7 @@ public class TowerAI : MonoBehaviour
     public GameObject buildPrefab;
     void Start()
     {
-        if(buildPrefab)
+        if (buildPrefab)
             Instantiate(buildPrefab, transform.position, transform.rotation);
         // TakeDamage(100);
     }
@@ -39,7 +39,8 @@ public class TowerAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch (currentState) {
+        switch (currentState)
+        {
             case TowerState.Patrol:
                 Patrol();
                 break;
@@ -49,13 +50,14 @@ public class TowerAI : MonoBehaviour
             case TowerState.Die:
                 Die();
                 break;
-            
+
         }
         LookForEnemies();
     }
 
-    void Patrol() {
-        Debug.Log("Patrolling...");
+    void Patrol()
+    {
+        // Debug.Log("Patrolling...");
         // 这里要传入自变量x，如果传入deltatime，那么就基本不会变（渲染时间一致）
         float angle = Mathf.PingPong(rotationSpeed * Time.time, maxRotationAngle * 2) - maxRotationAngle;
         // 让炮塔围绕Y轴旋转
@@ -65,10 +67,11 @@ public class TowerAI : MonoBehaviour
         LookForEnemies();
     }
 
-    void Attack() {
-        Debug.Log("Attacking..");
+    void Attack()
+    {
 
-        if(target == null || Vector3.Distance(transform.position, target.position) > detectionRange) {
+        if (target == null || Vector3.Distance(transform.position, target.position) > detectionRange)
+        {
             target = null;
             currentState = TowerState.Patrol;
             return;
@@ -79,33 +82,37 @@ public class TowerAI : MonoBehaviour
         // Rotate the cannon towards the target
         turret.rotation = Quaternion.Slerp(turret.rotation, lookRotation, Time.deltaTime * rotationSpeed);
         // Cooldown for shooting
-        if (fireCooldown <= 0) {
+        if (fireCooldown <= 0)
+        {
             if (HasLineOfSight(target))
                 Shoot();
-                
+
             fireCooldown = 1f / fireRate;
         }
         fireCooldown -= Time.deltaTime;
     }
 
-    void Shoot() {
-        
+    void Shoot()
+    {
+
         var bullet = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         BulletBehavior bulletBehavior = bullet.GetComponent<BulletBehavior>();
-        if (bulletBehavior != null) {
+        if (bulletBehavior != null)
+        {
             bulletBehavior.SetTarget(target);
         }
     }
 
-    void Die() {
+    void Die()
+    {
         if (isTowerDead)
             return;
 
         Debug.Log("Die");
         if (destroyPrefab)
             Instantiate(destroyPrefab, transform.position, transform.rotation);
-        
-        Destroy(gameObject, 1);
+
+        Destroy(gameObject);
 
         isTowerDead = true;
     }
@@ -115,38 +122,48 @@ public class TowerAI : MonoBehaviour
     // 2. Iterate, check if the collider is an enemy
     // 3. Find the nearest enemy
     // 4. If an enemy is found, set it as the target and change the state to Attack
-    void LookForEnemies() {
+    void LookForEnemies()
+    {
         Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRange);
         Transform nearestEnemy = null;
         float nearestDistance = Mathf.Infinity;
-        foreach(Collider collider in colliders) {
-            if (collider.CompareTag("Enemy")) {
+        foreach (Collider collider in colliders)
+        {
+            if (collider.CompareTag("Enemy"))
+            {
                 float distance = Vector3.Distance(transform.position, collider.transform.position);
-                if (distance < nearestDistance) {
+                if (distance < nearestDistance)
+                {
                     nearestEnemy = collider.transform;
                     nearestDistance = distance;
                 }
             }
         }
-        if(nearestEnemy) {
+        if (nearestEnemy)
+        {
             target = nearestEnemy;
             // Debug.Log("Target Detected: " + target.name);
             currentState = TowerState.Attack;
         }
     }
 
-    public void TakeDamage(int damage) {
+    public void TakeDamage(int damage)
+    {
+        Debug.Log("Take damage invoked");
+        Debug.Log("currentHealth:" + health + " TakenDamage:" + damage);
         health -= damage;
-        if(health <= 0) {
+        if (health <= 0)
+        {
             currentState = TowerState.Die;
         }
     }
 
 
-    void OnDrawGizmosSelected() {
+    void OnDrawGizmosSelected()
+    {
         Gizmos.DrawWireSphere(transform.position, detectionRange);
 
-        
+
     }
     void OnDrawGizmos()
     {
@@ -154,13 +171,15 @@ public class TowerAI : MonoBehaviour
         Debug.DrawLine(firePoint.position, lineEndPoint, Color.green);
     }
 
-    bool HasLineOfSight(Transform target) {
+    bool HasLineOfSight(Transform target)
+    {
         RaycastHit hit;
         Vector3 direction = (target.position - firePoint.position).normalized;
-        
-        if (Physics.Raycast(firePoint.position, direction, out hit, detectionRange)) {
-            if(hit.collider.CompareTag("Enemy")) {
-                Debug.Log("Enemy is in sight: " + hit.collider.name);
+
+        if (Physics.Raycast(firePoint.position, direction, out hit, detectionRange))
+        {
+            if (hit.collider.CompareTag("Enemy"))
+            {
                 return true;
             }
         }
@@ -168,14 +187,21 @@ public class TowerAI : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-         if(collision.transform.CompareTag("EnemyBullet")) {
+        Debug.Log("Got hit");
+        if (collision.transform.CompareTag("EBullet"))
+        {
             BulletBehavior bulletBehavior = collision.gameObject.GetComponent<BulletBehavior>();
-            if(bulletBehavior) {
-                TakeDamage(bulletBehavior.GetDamgageValue());
-                Debug.Log("Tower took"+ bulletBehavior.GetDamgageValue() + "damage");
+            if (bulletBehavior)
+            {
+                TakeDamage(bulletBehavior.GetDamageValue());
+                Debug.Log("Tower took" + bulletBehavior.GetDamageValue() + "damage");
             }
-         } else {
-            Debug.LogWarning("No damage taken from the bulllet.");
-         }    
+            else
+            {
+                Debug.LogWarning("BulletBehavior is null, No damage taken from the bullet.");
+            }
+
+
+        }
     }
 }

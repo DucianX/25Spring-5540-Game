@@ -9853,16 +9853,17 @@ MonoBehaviour:
   targetBase: {fileID: 0}
   currentState: 0
   rotateSpeed: 1
-  turret: {fileID: 4089879176614170}
   rotationSpeed: 30
-  detectionRange: 90
+  detectionRange: 10
   healthSlider: {fileID: 6386806461872187987}
+  turret: {fileID: 4089879176614170}
   canAttack: 1
   projectilePrefab: {fileID: 4132166219533410251, guid: e1ca50c5fe30d42c68e1b3170735b7bc, type: 3}
   firePoint: {fileID: 4561158699386170}
-  fireRate: 5
-  baseDamageValue: 20
-  health: 9999
+  fireRate: 0.3
+  baseDamageValue: 50
+  reward: 10
+  health: 80
   destroyPrefab: {fileID: 1082826025734650, guid: 42a3690e5d4a841ad958c0e3b9b7b19e, type: 3}
 --- !u!1 &1310902026913456
 GameObject:

@@ -19,7 +19,8 @@ public class BulletBehavior : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (target == null) {
+        if (target == null)
+        {
             return;
         }
         // direction
@@ -27,26 +28,28 @@ public class BulletBehavior : MonoBehaviour
 
         // smooth rotation
         Quaternion targetRotation = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation,
                                             rotationSpeed * Time.fixedDeltaTime);
-    
+
         // move bullet forward
         rb.linearVelocity = transform.forward * speed;
     }
 
-    public void SetTarget(Transform currentTarget) {
+    public void SetTarget(Transform currentTarget)
+    {
         target = currentTarget;
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Bullet hit " + collision.gameObject.name);
-        if(bulletHitPrefab) {
+        if (bulletHitPrefab)
+        {
             var pos = collision.contacts[0].point;
             Instantiate(bulletHitPrefab, pos, Quaternion.identity);
         }
     }
-    public int GetDamgageValue(){
+    public int GetDamageValue()
+    {
         return damage;
     }
 }

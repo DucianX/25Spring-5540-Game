@@ -112,7 +112,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1401014823036408}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 1
@@ -120,7 +120,7 @@ Transform:
   - {fileID: 4024196668781704}
   - {fileID: 4877050138446582}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &-797352238399582804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,8 +140,8 @@ MonoBehaviour:
   detectionRange: 6.33
   projectilePrefab: {fileID: 4132166219533410251, guid: 0d8dc9a2ed6473f44ac46130b9258005, type: 3}
   firePoint: {fileID: 4457715277627928}
-  fireRate: 3
-  health: 100
+  fireRate: 1.2
+  health: 10
   destroyPrefab: {fileID: 1082826025734650, guid: 7a0476686964e41ac8320b7cf37868c2, type: 3}
   buildPrefab: {fileID: 1395313577031670, guid: c559c1920b5d04e6d83aa4464fba5c68, type: 3}
 --- !u!65 &8253188956883119341
@@ -160,11 +160,11 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3.533763, y: 2.9284468, z: 3.1994228}
+  m_Center: {x: 0.15529889, y: 0.96422094, z: -0.18109117}
 --- !u!1 &1430798241748466
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class BaseBehavior : MonoBehaviour
@@ -32,9 +33,14 @@ public class BaseBehavior : MonoBehaviour
         if(health <= 0) {
             Debug.Log("Game Over!");
             health = 0;
+            GameLost();
         }
     }
-
+    public void GameLost() {
+        // possibly need to reset money here
+       
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy")) {

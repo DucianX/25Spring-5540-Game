@@ -16,30 +16,51 @@ public class TileBehavior : MonoBehaviour
 
     void OnMouseOver()
     {
+        if (TowerBuilder.Instance.HasSelectedTower())
+            return;
         if (squareFilledMat)
             _renderer.sharedMaterial = squareFilledMat;
-       
+
     }
 
-    void OnMouseExit() {
-        if(!tileTower) {
+    void OnMouseExit()
+    {
+        // if(!TowerBuilder.Instance.HasSelectedTower())
+        //     return;
+        if (!tileTower)
+        {
             _renderer.sharedMaterial = originalMaterial;
         }
     }
 
-    void OnMouseDown() { 
-        if (!tileTower) {
-            if (towerPrefab) {
-                HighlightTile();
-                 tileTower = Instantiate(towerPrefab, 
-                transform.parent.position, transform.parent.rotation);
+    void OnMouseDown()
+    {
+        if (!tileTower)
+        {
+
+            if (TowerBuilder.Instance.HasSelectedTower())
+            {
+                int cost = TowerBuilder.Instance.GetSelectedTowerCost();
+                if (!MoneyManager.Instance.BuyTower(cost))
+                {
+                    Debug.LogWarning("Cannot afford selected tower");
+                    return;
+                }
+                GameObject towerPrefab = TowerBuilder.Instance.GetSelectedTowerPrefab();
+
+                var tower = Instantiate(towerPrefab, transform.parent.position, transform.parent.rotation);
+
+                tileTower = tower;
+
+                TowerBuilder.Instance.ClearSelection();
             }
         }
-        
-       
+
+
     }
-    
-    void HighlightTile() {
+
+    void HighlightTile()
+    {
         if (squareFilledMat)
             _renderer.sharedMaterial = squareFilledMat;
     }

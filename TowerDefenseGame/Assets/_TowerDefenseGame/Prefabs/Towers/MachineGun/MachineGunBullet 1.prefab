@@ -14554,8 +14554,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 5
-  lifetime: 5
-  damage: 10
+  lifetime: 0.5
+  damage: 1
   bulletHitPrefab: {fileID: 534260366808470948, guid: e7865b22134124ac58e486a5f125e7c3, type: 3}
 --- !u!1 &4739401406311911194
 GameObject:

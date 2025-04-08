@@ -183,9 +183,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8125825875897929087}
   - component: {fileID: 4691158509113047874}
-  - component: {fileID: 9040692417103015486}
-  - component: {fileID: 7787329288866738420}
   - component: {fileID: 848785446395629827}
+  - component: {fileID: 5858576083787457637}
+  - component: {fileID: 5923382132619101664}
   m_Layer: 11
   m_Name: Hoverbuggy
   m_TagString: Enemy
@@ -238,51 +238,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!136 &9040692417103015486
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5579247913167121490}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.55
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.42, z: 0}
---- !u!195 &7787329288866738420
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5579247913167121490}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 8
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!114 &848785446395629827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,16 +253,61 @@ MonoBehaviour:
   targetBase: {fileID: 0}
   currentState: 0
   rotateSpeed: 1
-  turret: {fileID: 0}
   rotationSpeed: 30
-  detectionRange: 0
+  detectionRange: 1
   healthSlider: {fileID: 2170362315177628408}
+  turret: {fileID: 0}
   canAttack: 0
   projectilePrefab: {fileID: 0}
-  firePoint: {fileID: 0}
-  fireRate: 2
-  health: 100
+  firePoint: {fileID: 7895877274347545790}
+  fireRate: 0
+  baseDamageValue: 10
+  reward: 1
+  health: 20
   destroyPrefab: {fileID: 0}
+--- !u!195 &5858576083787457637
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5579247913167121490}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 4
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!65 &5923382132619101664
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5579247913167121490}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 0.47924042, z: 1}
+  m_Center: {x: 0, y: 0.2603798, z: 0}
 --- !u!1 &6758349472320825865
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,6 +430,14 @@ PrefabInstance:
     - target: {fileID: 3516638162167903417, guid: 8669bec9226f45f4392820e53a53a183, type: 3}
       propertyPath: m_Name
       value: HealthBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 8509824223826858953, guid: 8669bec9226f45f4392820e53a53a183, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8509824223826858953, guid: 8669bec9226f45f4392820e53a53a183, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Tower
   - EnemyBullet
+  - EBullet
   layers:
   - Default
   - TransparentFX
